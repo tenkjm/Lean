@@ -240,6 +240,7 @@
     <Compile Include="Orders\Fees\OrderFeeParameters.cs" />
     <Compile Include="Python\BrokerageMessageHandlerPythonWrapper.cs" />
     <Compile Include="Python\MarginCallModelPythonWrapper.cs" />
+    <Compile Include="Python\PythonDebugger.cs" />
     <Compile Include="Python\PythonInitializer.cs" />
     <Compile Include="Python\PythonWrapper.cs" />
     <Compile Include="Securities\BuyingPower.cs" />
