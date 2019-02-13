@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using QuantConnect.Orders.Fees;
+using CryptoQuant;
 
 namespace QuantConnect.Brokerages.Bitfinex
 {
@@ -359,10 +360,16 @@ namespace QuantConnect.Brokerages.Bitfinex
         }
         #endregion
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public override void Dispose()
+
+         public void DecryptKey(string password)
+       {
+              this.ApiKey = EncryptDecryptor.DecryptString(this.ApiKey, password);          
+       }
+
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public override void Dispose()
         {
             _restRateLimiter.Dispose();
         }

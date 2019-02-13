@@ -21,6 +21,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using QuantConnect.Brokerages;
+using QuantConnect.Brokerages.Bitfinex;
 using QuantConnect.Configuration;
 using QuantConnect.Data;
 using QuantConnect.Exceptions;
@@ -85,7 +86,8 @@ namespace QuantConnect.Lean.Engine
         /// <param name="job">The algorithm job to be processed</param>
         /// <param name="manager"></param>
         /// <param name="assemblyPath">The path to the algorithm's assembly</param>
-        public void Run(AlgorithmNodePacket job, AlgorithmManager manager, string assemblyPath)
+        public void Run(AlgorithmNodePacket job, AlgorithmManager manager, string assemblyPath, string
+                    encryptPassword= null)
         {
             var algorithm = default(IAlgorithm);
             var algorithmManager = manager;
@@ -125,6 +127,13 @@ namespace QuantConnect.Lean.Engine
                     // Initialize the brokerage
                     IBrokerageFactory factory;
                     brokerage = _algorithmHandlers.Setup.CreateBrokerage(job, algorithm, out factory);
+
+                    var bitfinex = brokerage as BitfinexBrokerage;
+                   
+                      if (bitfinex != null)
+                      {
+                         bitfinex.DecryptKey(encryptPassword);
+                      }
 
                     var marketHoursDatabase = MarketHoursDatabase.FromDataFolder();
                     var symbolPropertiesDatabase = SymbolPropertiesDatabase.FromDataFolder();

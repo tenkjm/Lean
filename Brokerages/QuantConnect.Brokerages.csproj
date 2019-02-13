@@ -671,6 +671,10 @@
       <Project>{0AEB4EA3-28C8-476E-89FD-926F06590B4C}</Project>
       <Name>QuantConnect.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CryptoQuant\CryptoQuant.csproj">
+      <Project>{c2aa6004-1996-4ccf-94fa-a6549c4d5259}</Project>
+      <Name>CryptoQuant</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logging\QuantConnect.Logging.csproj">
       <Project>{01911409-86be-4e7d-9947-df714138610d}</Project>
       <Name>QuantConnect.Logging</Name>

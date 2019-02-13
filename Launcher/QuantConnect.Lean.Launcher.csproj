@@ -98,6 +98,10 @@
       <Project>{0aeb4ea3-28c8-476e-89fd-926f06590b4c}</Project>
       <Name>QuantConnect.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CryptoQuant\CryptoQuant.csproj">
+      <Project>{c2aa6004-1996-4ccf-94fa-a6549c4d5259}</Project>
+      <Name>CryptoQuant</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Engine\QuantConnect.Lean.Engine.csproj">
       <Project>{12156F46-D07E-4E3D-AD2B-7409E82AB62F}</Project>
       <Name>QuantConnect.Lean.Engine</Name>

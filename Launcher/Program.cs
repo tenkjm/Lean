@@ -1,11 +1,11 @@
 ﻿/*
  * QUANTCONNECT.COM - Democratizing Finance, Empowering Individuals.
  * Lean Algorithmic Trading Engine v2.0. Copyright 2014 QuantConnect Corporation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,14 +18,20 @@ using System;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
+using System.Net.Security;
+using System.Security.Authentication;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Windows.Forms;
+using CryptoQuant;
+using QuantConnect.Algorithm.CSharp;
 using QuantConnect.Configuration;
 using QuantConnect.Interfaces;
 using QuantConnect.Lean.Engine;
 using QuantConnect.Logging;
 using QuantConnect.Packets;
 using QuantConnect.Util;
+using TcpClient = System.Net.Sockets.TcpClient;
 
 namespace QuantConnect.Lean.Launcher
 {
@@ -44,18 +50,34 @@ namespace QuantConnect.Lean.Launcher
             };
         }
 
+
         static void Main(string[] args)
         {
             //Initialize:
             var mode = "RELEASE";
-            #if DEBUG
-                mode = "DEBUG";
-            #endif
+#if DEBUG
+            mode = "DEBUG";
+#endif
 
             if (OS.IsWindows)
             {
                 Console.OutputEncoding = System.Text.Encoding.Unicode;
             }
+
+
+
+            Console.Out.WriteLine("If you need to encode acess token enter: token encryptPass");
+
+            var srt = Console.ReadLine();
+
+            var parts = srt.Split(' ');
+
+            if (parts.Length == 2)
+            {
+                Console.Out.WriteLine("Your encrypted string is:" + EncryptDecryptor.EncryptString(parts[0], parts[1]));
+            }
+
+
 
             // expect first argument to be config file name
             if (args.Length > 0)
@@ -72,6 +94,7 @@ namespace QuantConnect.Lean.Launcher
             Thread.CurrentThread.Name = "Algorithm Analysis Thread";
             Log.Trace("Engine.Main(): LEAN ALGORITHMIC TRADING ENGINE v" + Globals.Version + " Mode: " + mode + " (" + (Environment.Is64BitProcess ? "64" : "32") + "bit)");
             Log.Trace("Engine.Main(): Started " + DateTime.Now.ToShortTimeString());
+           // Log.Trace("Engine.Main(): Memory " + OS.ApplicationMemoryUsed + "Mb-App  " + +OS.TotalPhysicalMemoryUsed + "Mb-Used  " + OS.TotalPhysicalMemory + "Mb-Total");
 
             //Import external libraries specific to physical server location (cloud/local)
             LeanEngineSystemHandlers leanEngineSystemHandlers;
@@ -113,7 +136,7 @@ namespace QuantConnect.Lean.Launcher
                 var info = new ProcessStartInfo
                 {
                     UseShellExecute = false,
-                    FileName  = Config.Get("desktop-exe"),
+                    FileName = Config.Get("desktop-exe"),
                     Arguments = Config.Get("desktop-http-port")
                 };
                 Process.Start(info);
@@ -140,7 +163,11 @@ namespace QuantConnect.Lean.Launcher
                 leanEngineSystemHandlers.LeanManager.Initialize(leanEngineSystemHandlers, leanEngineAlgorithmHandlers, job, algorithmManager);
 
                 var engine = new Engine.Engine(leanEngineSystemHandlers, leanEngineAlgorithmHandlers, liveMode);
-                engine.Run(job, algorithmManager, assemblyPath);
+
+                Console.Out.WriteLine("Enter token password please");
+
+                var pass = Console.ReadLine();
+                engine.Run(job, algorithmManager, assemblyPath, encryptPassword: pass);
             }
             finally
             {
