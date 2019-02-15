@@ -60,6 +60,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "QuantConnect.PythonToolbox"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoQuant", "CryptoQuant\CryptoQuant.csproj", "{C2AA6004-1996-4CCF-94FA-A6549C4D5259}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordCrypter", "PasswordCrypter\PasswordCrypter.csproj", "{B0A5C08D-941B-4658-965A-ED204729B2A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -228,6 +230,14 @@ Global
 		{C2AA6004-1996-4CCF-94FA-A6549C4D5259}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2AA6004-1996-4CCF-94FA-A6549C4D5259}.Release|x64.ActiveCfg = Release|Any CPU
 		{C2AA6004-1996-4CCF-94FA-A6549C4D5259}.Release|x64.Build.0 = Release|Any CPU
+		{B0A5C08D-941B-4658-965A-ED204729B2A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0A5C08D-941B-4658-965A-ED204729B2A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0A5C08D-941B-4658-965A-ED204729B2A0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B0A5C08D-941B-4658-965A-ED204729B2A0}.Debug|x64.Build.0 = Debug|Any CPU
+		{B0A5C08D-941B-4658-965A-ED204729B2A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0A5C08D-941B-4658-965A-ED204729B2A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0A5C08D-941B-4658-965A-ED204729B2A0}.Release|x64.ActiveCfg = Release|Any CPU
+		{B0A5C08D-941B-4658-965A-ED204729B2A0}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
