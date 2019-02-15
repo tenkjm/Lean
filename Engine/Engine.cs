@@ -130,10 +130,10 @@ namespace QuantConnect.Lean.Engine
 
                     var bitfinex = brokerage as BitfinexBrokerage;
                    
-                      if (bitfinex != null)
-                      {
-                         bitfinex.DecryptKey(encryptPassword);
-                      }
+                    if (bitfinex != null)
+                    {
+                        bitfinex.DecryptKey(encryptPassword);
+                    }
 
                     var marketHoursDatabase = MarketHoursDatabase.FromDataFolder();
                     var symbolPropertiesDatabase = SymbolPropertiesDatabase.FromDataFolder();
