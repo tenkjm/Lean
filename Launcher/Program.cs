@@ -65,20 +65,6 @@ namespace QuantConnect.Lean.Launcher
             }
 
 
-
-            Console.Out.WriteLine("If you need to encode acess token enter: token encryptPass");
-
-            var srt = Console.ReadLine();
-
-            var parts = srt.Split(' ');
-
-            if (parts.Length == 2)
-            {
-                Console.Out.WriteLine("Your encrypted string is:" + EncryptDecryptor.EncryptString(parts[0], parts[1]));
-            }
-
-
-
             // expect first argument to be config file name
             if (args.Length > 0)
             {
